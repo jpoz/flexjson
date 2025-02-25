@@ -65,33 +65,35 @@ func main() {
 package main
 
 import (
-    "fmt"
-    "github.com/jpoz/flexjson"
+	"fmt"
+
+	"github.com/jpoz/flexjson"
 )
 
 func main() {
-    // Example JSON string
-    jsonStrs := []string{`{"name":"John Doe"`, `,"age":30`, `,"email":"johndoe@example.com"}`}
-    
-    // Create output map
-    output := map[string]any{}
-    
-    // Create streaming parser
-    sp := flexjson.NewStreamingParser(&output)
-    
-    // Process each character
-    for _, str := range jsonStrs {
-        err := sp.Append(str)
-        if err != nil {
-            fmt.Printf("Error: %v\n", err)
-            return
-        }
-        
-        // The output map is updated after each character
-        fmt.Printf("Current state: %v\n", output)
-    }
-    
-    fmt.Printf("Final result: %v\n", output)
+	// Example JSON string
+	jsonStrs := []string{`{"name":"John Doe"`, `,"age":30,`, `"email":"johndoe@example.com"}`}
+
+	// Create output map
+	output := map[string]any{}
+
+	// Create streaming parser
+	sp := flexjson.NewStreamingParser(&output)
+
+	// Process each string
+	for _, str := range jsonStrs {
+		fmt.Printf("Processing %s\n", str)
+		err := sp.ProcessString(str)
+		if err != nil {
+			fmt.Printf("Error: %v\n", err)
+			return
+		}
+
+		// The output map is updated after each string
+		fmt.Printf("Current state: %v\n", output)
+	}
+
+	fmt.Printf("Final result: %v\n", output)
 }
 ```
 
