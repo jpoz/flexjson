@@ -71,7 +71,7 @@ import (
 
 func main() {
     // Example JSON string
-    jsonStr := `{"name":"John Doe","age":30,"email":"johndoe@example.com"}`
+    jsonStrs := []string{`{"name":"John Doe"`, `,"age":30`, `,"email":"johndoe@example.com"}`}
     
     // Create output map
     output := map[string]any{}
@@ -80,8 +80,8 @@ func main() {
     sp := flexjson.NewStreamingParser(&output)
     
     // Process each character
-    for _, char := range jsonStr {
-        err := sp.Append(string(char))
+    for _, str := range jsonStrs {
+        err := sp.Append(str)
         if err != nil {
             fmt.Printf("Error: %v\n", err)
             return

@@ -441,19 +441,13 @@ func (p *Parser) isAtEnd() bool {
 	return p.current >= len(p.tokens) || p.tokens[p.current].Type == TokenEOF
 }
 
-// ParsePartialJSON parses a partial JSON string into a Go value
-func ParsePartialJSON(input string) (interface{}, error) {
+// Parse parses a partial JSON string into a map[string]any
+func Parse(input string) (map[string]any, error) {
 	lexer := NewLexer(input)
 	tokens := lexer.Tokenize()
 
 	parser := NewParser(tokens)
-	return parser.Parse()
-}
-
-// ParsePartialJSONObject parses a partial JSON string into a map[string]any
-// This is the main function that should be used by clients
-func ParsePartialJSONObject(input string) (map[string]any, error) {
-	result, err := ParsePartialJSON(input)
+	result, err := parser.Parse()
 	if err != nil {
 		return nil, err
 	}

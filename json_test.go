@@ -105,7 +105,7 @@ func TestParsePartialJSONObject(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result, err := ParsePartialJSONObject(tt.input)
+			result, err := Parse(tt.input)
 
 			if (err != nil) != tt.wantErr {
 				t.Errorf("ParsePartialJSONObject() error = %v, wantErr %v", err, tt.wantErr)
@@ -122,7 +122,7 @@ func TestParsePartialJSONObject(t *testing.T) {
 // Test the exact examples from the requirements
 func TestRequirementExamples(t *testing.T) {
 	// Example 1: {"key": 123 should parse into map[string]any{"key": 123}
-	example1, err := ParsePartialJSONObject(`{"key": 123`)
+	example1, err := Parse(`{"key": 123`)
 	if err != nil {
 		t.Errorf("Failed on example 1: %v", err)
 	}
@@ -132,7 +132,7 @@ func TestRequirementExamples(t *testing.T) {
 	}
 
 	// Example 2: {"key": 1234, "key2": should parse into map[string]any{"key": 1234, "key2": nil}
-	example2, err := ParsePartialJSONObject(`{"key": 1234, "key2":`)
+	example2, err := Parse(`{"key": 1234, "key2":`)
 	if err != nil {
 		t.Errorf("Failed on example 2: %v", err)
 	}
@@ -203,7 +203,7 @@ func TestEdgeCases(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result, err := ParsePartialJSONObject(tt.input)
+			result, err := Parse(tt.input)
 
 			if (err != nil) != tt.wantErr {
 				t.Errorf("ParsePartialJSONObject() error = %v, wantErr %v", err, tt.wantErr)
