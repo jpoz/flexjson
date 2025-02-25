@@ -4,7 +4,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/jpoz/flexjson)](https://goreportcard.com/report/github.com/jpoz/flexjson)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-PartialJSON is a specialized Go library designed to parse incomplete or streaming JSON data. Unlike standard JSON parsers that require valid, complete JSON input, PartialJSON gracefully handles partial JSON fragments and streams of characters, extracting as much structured data as possible.
+FlexJSON parses incomplete or streaming JSON data. Unlike standard JSON parsers that require valid, complete JSON input, FlexJSON gracefully handles partial JSON fragments and streams of characters, extracting as much structured data as possible.
 
 ## 🌟 Features
 
@@ -97,7 +97,7 @@ func main() {
 
 ## ⚙️ How It Works
 
-PartialJSON uses a custom lexer and parser system for the partial JSON parsing, and a state machine approach for streaming parsing:
+FlexJSON uses a custom lexer and parser system for the partial JSON parsing, and a state machine approach for streaming parsing:
 
 1. **Lexer**: Tokenizes the input string into JSON tokens (strings, numbers, booleans, etc.)
 2. **Parser**: Converts tokens into a structured map representation
