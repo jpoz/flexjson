@@ -4,7 +4,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/jpoz/flexjson)](https://goreportcard.com/report/github.com/jpoz/flexjson)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-FlexJSON parses incomplete or streaming JSON data. Unlike standard JSON parsers that require valid, complete JSON input, FlexJSON gracefully handles partial JSON fragments and streams of characters, extracting as much structured data as possible.
+FlexJSON parses incomplete or streaming JSON data, like JSON coming from an LLM. Unlike standard JSON parsers that require valid, complete JSON input, FlexJSON gracefully handles partial JSON fragments and streams of characters, extracting as much structured data as possible.
 
 ## 🌟 Features
 
@@ -23,6 +23,10 @@ FlexJSON parses incomplete or streaming JSON data. Unlike standard JSON parsers 
 - **Resilient Parsing**: Recovers gracefully from unexpected input
   - No panic on malformed input
   - Extracts maximum valid data even from corrupted JSON
+ 
+- **LLM Integration**: Perfect for processing streaming JSON responses from LLMs
+  - Extracts structured data as tokens arrive
+  - Enables real-time UI updates with partial LLM outputs
 
 - **Zero Dependencies**: Pure Go implementation with no external dependencies
 
@@ -96,6 +100,16 @@ func main() {
 	fmt.Printf("Final result: %v\n", output)
 }
 ```
+
+## 🤖 LLM Integration Benefits
+
+FlexJSON is particularly well-suited for applications working with LLMs:
+
+* Real-time Processing: Parse JSON data as it streams from LLM APIs token by token
+* Immediate Feedback: Update UIs with structured data before the LLM completes its response
+* Resilient Handling: Continue processing even if the LLM produces malformed JSON
+* Progressive Rendering: Display complex nested structures as they become available
+* Efficient Resource Usage: Begin processing data immediately rather than waiting for complete responses
 
 ## ⚙️ How It Works
 
